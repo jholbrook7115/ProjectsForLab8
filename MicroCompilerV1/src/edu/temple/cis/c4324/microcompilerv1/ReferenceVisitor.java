@@ -183,6 +183,7 @@ public class ReferenceVisitor extends MicroBaseVisitor<Type> {
         if (guardType != BOOL) {
             error(ctx, "If statement guard is not a boolean type");
         }
+        visit(ctx.statement_list());
         ctx.elsif_part().forEach(elsif_part -> visit(elsif_part));
         if (ctx.else_part() != null) {
             visit(ctx.else_part());
@@ -208,6 +209,7 @@ public class ReferenceVisitor extends MicroBaseVisitor<Type> {
         if (guardType != BOOL) {
             error(ctx, "If statement guard is not a boolean type");
         }
+        visit(ctx.statement_list());
         typeMap.put(ctx, VOID);
         return VOID;
     }
@@ -236,6 +238,7 @@ public class ReferenceVisitor extends MicroBaseVisitor<Type> {
 
     @Override
     public Type visitFcnCall(FcnCallContext ctx) {
+        ctx.expr_list().expr().forEach(expr -> visit(expr));
         Identifier fcnId = currentScope.resolve(ctx.ID().getText());
         if (fcnId != null) {
             Type fcnType = fcnId.getType();
