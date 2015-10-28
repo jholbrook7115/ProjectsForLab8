@@ -1,0 +1,43 @@
+Classfile /I:/ClassFiles_003/CIS4324/CodeGenerator/RecordTest$ARecord.class
+  Last modified Jun 28, 2015; size 294 bytes
+  MD5 checksum b12075d24b0a9212dda11b8b58abec98
+  Compiled from "<generated>"
+public class RecordTest$ARecord
+  minor version: 3
+  major version: 45
+  flags: ACC_PUBLIC, ACC_SUPER, 0x8
+Constant pool:
+   #1 = Utf8               SourceFile
+   #2 = Utf8               <generated>
+   #3 = Utf8               RecordTest$ARecord
+   #4 = Class              #3             // RecordTest$ARecord
+   #5 = Utf8               java/lang/Object
+   #6 = Class              #5             // java/lang/Object
+   #7 = Utf8               <init>
+   #8 = Utf8               ()V
+   #9 = NameAndType        #7:#8          // "<init>":()V
+  #10 = Methodref          #6.#9          // java/lang/Object."<init>":()V
+  #11 = Utf8               this
+  #12 = Utf8               LRecordTest$ARecord;
+  #13 = Utf8               LocalVariableTable
+  #14 = Utf8               Code
+  #15 = Utf8               RecordTest
+  #16 = Class              #15            // RecordTest
+  #17 = Utf8               ARecord
+  #18 = Utf8               InnerClasses
+{
+  public RecordTest$ARecord();
+    descriptor: ()V
+    flags: ACC_PUBLIC
+    Code:
+      stack=1, locals=1, args_size=1
+         0: aload_0
+         1: invokespecial #10                 // Method java/lang/Object."<init>":()V
+         4: return
+      LocalVariableTable:
+        Start  Length  Slot  Name   Signature
+            0       5     0  this   LRecordTest$ARecord;
+}
+SourceFile: "<generated>"
+InnerClasses:
+     public static #17= #4 of #16; //ARecord=class RecordTest$ARecord of class RecordTest

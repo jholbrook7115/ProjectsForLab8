@@ -1,0 +1,21 @@
+program RecordTest
+	record ARecord is
+		int x;
+		real y;
+		int i[10];
+	end;
+	record BRecord is
+		ARecord r;
+	end;
+	ARecord aRecordVariable;
+	BRecord bRecordVariable;
+	int w;
+        real z;
+begin
+	aRecordVariable.x := 5;
+        w := aRecordVariable.x;
+        bRecordVariable.r.y := 10.0;
+        z := bRecordVariable.r.y;
+        aRecordVariable.i[3] := 99;
+        w := aRecordVariable.i[3];
+end;

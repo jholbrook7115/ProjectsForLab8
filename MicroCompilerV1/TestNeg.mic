@@ -1,0 +1,11 @@
+program TestNeg 
+    int x;
+    int y;
+    int z;
+begin
+        x := 5;
+        y := -x;
+        y := ~x;
+        z := x < y;
+        z := ¬z;
+end;

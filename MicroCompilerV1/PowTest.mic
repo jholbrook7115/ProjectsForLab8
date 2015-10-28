@@ -1,0 +1,6 @@
+program PowTest 
+    int x;
+begin
+    x := 2 ** 31;
+    write(x);
+end;

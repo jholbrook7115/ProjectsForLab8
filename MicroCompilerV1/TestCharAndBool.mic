@@ -1,0 +1,16 @@
+program TestCharAndBool
+	char c1;
+	char c2;
+	bool b1;
+	bool b2;
+begin
+	c1 := 'x';
+	write(c1);
+	c2 := '\n';
+	write(c2);
+	write('\u00ac');
+	b1 := true;
+	write(b1);
+	b2 := false;
+	write(b2);
+end;

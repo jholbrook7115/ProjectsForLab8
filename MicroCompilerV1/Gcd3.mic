@@ -1,0 +1,21 @@
+program Gcd3
+    int x;
+    int y;
+    function int Gcd(int x, int y)
+        int t;
+    begin
+        while y > 0
+            do
+                t := x % y;
+                x := y;
+                y := t;
+            od;
+        return x;
+    end;
+begin
+    write('e', 'n', 't', 'e', 'r', ' ', 'n', '>');
+    read(x);
+    write('e', 'n', 't', 'e', 'r', ' ', 'm', '>');
+    read(y);
+    write('G','C','D','(', x, ',', y, ')', '=', Gcd(x, y), '\n');
+end;    

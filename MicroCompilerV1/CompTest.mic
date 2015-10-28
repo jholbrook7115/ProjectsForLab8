@@ -1,0 +1,15 @@
+program CompTest
+	real x;
+	real y;
+	int i;
+	int j;
+begin
+	x := 10.0;
+	y := 5.0;
+	i := 1;
+	j := 2;
+	write(x > i);
+	write(j < y);
+	write(j > i);
+	write(x > y);
+end;

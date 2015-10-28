@@ -1,0 +1,18 @@
+program Gcd2
+    int x;
+    int y;
+    function int Gcd(int x, int y)
+        int t;
+    begin
+        while y > 0
+            do
+                t := x % y;
+                x := y;
+                y := t;
+            od;
+        return x;
+    end;
+begin
+    read(x, y);
+    write(Gcd(x, y));
+end;    

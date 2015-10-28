@@ -1,0 +1,3 @@
+program TestNewWrite begin
+	write('H', 'e', 'l', 'l', 'o', ' ', 'w', 'o', 'r', 'l', 'd', '\n');
+end;

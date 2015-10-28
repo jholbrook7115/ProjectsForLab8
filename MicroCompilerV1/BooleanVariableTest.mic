@@ -1,0 +1,14 @@
+program BooleanVariableTest
+    bool b;
+    int i;
+    real x;
+begin
+    i := 2;
+    x := 4.0;
+    b := x < i;
+    if b then
+        write(b);
+    else
+        write(i);
+    fi;
+end;

@@ -1,0 +1,41 @@
+case "nop": break;
+case "null": break;
+case "iconst": break;
+case "lconst": break;
+case "fconst": break;
+case "dconst": break;
+case "sconst": break;
+case "zconst": break;
+case "lload": break;
+case "fload": break;
+case "dload": break;
+case "fstore": break;
+case "lstore": break;
+case "dstore": break;
+case "arrayLoad": break;
+case "arrayStore": break;
+case "pop": break;
+case "pop2": break;
+case "dup": break; // update to include X2, X2, 2_X1 and 2_x2
+case "swap": break;
+case "neg": break;
+case "iinc": break;
+case "cast": break;
+case "lcmp": break; // long comp
+case "fcmpl": break: // v1 < v2
+case "fcmpg": break: // v1 > v2
+case "dcmpl": break: // v1 < v2
+case "dcmpl": break: // v1 > v2
+case "if": break; // need opcode specific table use symbols with 0 for comp with zero === for classes and !== for classes
+case "goto": break;
+case "switch": break;
+case "return": break;
+case "putstatic": break;
+case "getfield": break;
+case "putfield": break;
+case "invokestatic": break;
+case "invokeinterface": break;
+case "newarray": break;
+case "arraylength": break;
+case "throw": break;
+case "instanceof": break;

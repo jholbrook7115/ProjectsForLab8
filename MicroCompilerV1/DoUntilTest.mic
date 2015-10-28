@@ -1,0 +1,7 @@
+program DoUntilTest begin
+    i := 0;
+    do
+        write(i);
+        i := i + 1;
+    od until i = 10;
+end;

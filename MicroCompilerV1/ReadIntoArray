@@ -1,0 +1,12 @@
+program ReadIntoArray
+    int x[2];
+    procedure proc() 
+        int y[2];
+        int i;
+    begin
+        read(x[1], y[1], i);
+        write(x[1], y[1], i);
+    end;
+begin
+    call proc();
+end;

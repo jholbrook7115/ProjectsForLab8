@@ -1,0 +1,10 @@
+program EuclidDistance
+    real x;
+    real y;
+    real z;
+    begin
+        read(x);
+        read(y);
+        z := (x*x + y*y)**0.5;
+        write(z);
+    end;

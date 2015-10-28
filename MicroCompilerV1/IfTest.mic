@@ -1,0 +1,109 @@
+program IfTest 
+    int x;
+    int y;
+    int z;
+begin
+    x := 1;
+    y := 2;
+    z := 3;
+    write(x, y, z);
+    write(1, 2, 3);
+    if x > y then
+        x := 4;
+    fi;
+    write(x, y, z);
+    write(1, 2, 3);
+    if x < y then
+        x := 4;
+    fi;
+    write(x, y, z);
+    write(4, 2, 3);
+    x := 1;
+    if x < y then
+        y := 4;
+    else
+        z := 4;
+    fi;
+    write(x, y, z);
+    write(1, 4, 3);
+    y := 2;
+    if x > y then
+        y := 4;
+    else
+        z := 4;
+    fi;
+    write(x, y, z);
+    write(1, 2, 4);
+    z := 3;    
+    if y > z then
+        x := 1;
+    elif z < x then
+        y := 9;
+    fi;
+    write(x, y, z);
+    write(1, 2, 3);
+    if y < z then
+        x := 4;
+    elif z < x then
+        y := 9;
+    fi;
+    write(x, y, z);
+    write(4, 2, 3);
+    x := 1;
+    if y > z then
+        x := 4;
+    elif z > x then
+        y := 9;
+    fi;
+    write(x, y, z);
+    write(1, 9, 3);
+    y := 2;
+    if z = x then
+        y := 99;
+    elif x = y then
+        z := 100;
+    elif y = z then
+        x := 80;
+    else
+        y := 1000;
+    fi;
+    write(x, y, z);
+    write(1, 1000, 3);
+    y := 2;
+    if z != x then
+        y := 99;
+    elif x = y then
+        z := 100;
+    elif y = z then
+        x := 80;
+    else
+        y := 1000;
+    fi;
+    write(x, y, z);
+    write(1, 99, 3);
+    y := 2;
+    if z = x then
+        y := 99;
+    elif x != y then
+        z := 100;
+    elif y = z then
+        x := 80;
+    else
+        y := 1000;
+    fi;
+    write(x, y, z);
+    write(1, 2, 100);
+    z := 3;
+    if z = x then
+        y := 99;
+    elif x = y then
+        z := 100;
+    elif y != z then
+        x := 80;
+    else
+        y := 1000;
+    fi;
+    write(x, y, z);
+    write(80, 2, 3);
+    z := 3;
+end;

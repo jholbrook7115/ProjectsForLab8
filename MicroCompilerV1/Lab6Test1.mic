@@ -1,0 +1,20 @@
+program Lab6Test
+	char c1;
+	char c2;
+	char c3;
+	int i;
+	int j;
+begin
+	c1 := 'A';
+	c2 := 'b';
+	i := 5;
+	j := c1 - c2;
+	write(j);
+	write(c1 + 5);
+	write(c2 - 1);
+	write(3 + c1);
+	write(3 - c1);
+	write(2*c2);
+	write(c1/2);
+end;
+

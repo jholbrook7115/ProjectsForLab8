@@ -1,0 +1,14 @@
+program Gcd
+    int x;
+    int y;
+    int t;
+    begin
+        read(x, y);
+        while y > 0
+            do
+                t := x % y;
+                x := y;
+                y := t;
+            od;
+        write(x);
+    end;

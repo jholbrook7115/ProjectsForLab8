@@ -1,0 +1,12 @@
+program Fact 
+    int n;
+    int nFact;
+begin
+    read(n);
+    nFact := 1;
+    while n > 0 do
+        nfact := nfact * n;
+        n := n - 1;
+    od;
+    write(nFact);
+end;
