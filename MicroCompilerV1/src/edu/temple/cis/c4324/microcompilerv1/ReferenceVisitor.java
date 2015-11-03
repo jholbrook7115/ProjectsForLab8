@@ -279,6 +279,7 @@ public class ReferenceVisitor extends MicroBaseVisitor<Type> {
     @Override
     public Type visitRecordAccess(MicroParser.RecordAccessContext ctx) {
         Type recordType = visit(ctx.expr());
+        
         if (recordType instanceof RecordType) {
             Scope recordScope = ((RecordType)recordType).getContainedScope();
             Identifier id = recordScope.resolve(ctx.ID().getText());
@@ -292,7 +293,12 @@ public class ReferenceVisitor extends MicroBaseVisitor<Type> {
                         + ((RecordType)recordType).getRecordTypeName());
                 return VOID;   
             }
-        } else {
+        }
+        else if(recordType instanceof ArrayType && ctx.ID().getText().equals("length")){
+            typeMap.put(ctx,INT);
+            return INT;
+        }
+        else {
             MicroCompilerV1.error(ctx, "Not a record type");
             return VOID;
         }        

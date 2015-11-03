@@ -1,4 +1,4 @@
-// Generated from edu\temple\cis\c4324\micro\Micro.g4 by ANTLR 4.5.1
+// Generated from edu/temple/cis/c4324/micro/Micro.g4 by ANTLR 4.5.1
 
 package edu.temple.cis.c4324.micro;
 

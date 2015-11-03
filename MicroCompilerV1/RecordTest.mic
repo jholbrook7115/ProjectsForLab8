@@ -7,15 +7,15 @@ program RecordTest
 	record BRecord is
 		ARecord r;
 	end;
-	ARecord aRecordVariable;
+	ARecord aRecordVariable[3];
 	BRecord bRecordVariable;
 	int w;
         real z;
 begin
-	aRecordVariable.x := 5;
-        w := aRecordVariable.x;
+	aRecordVariable[0].x := 5;
+        w := aRecordVariable[0].x;
         bRecordVariable.r.y := 10.0;
         z := bRecordVariable.r.y;
-        aRecordVariable.i[3] := 99;
-        w := aRecordVariable.i[3];
+        aRecordVariable[0].i[3] := 99;
+        w := aRecordVariable[0].i[3];
 end;

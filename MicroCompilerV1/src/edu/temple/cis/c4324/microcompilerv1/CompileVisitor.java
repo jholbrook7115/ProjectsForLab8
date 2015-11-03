@@ -322,6 +322,20 @@ public class CompileVisitor extends MicroBaseVisitor<InstructionList> {
         String componentTypeName = componentType.getJavaTypeName();
         String javaTypeName = arrayType.getJavaTypeName();
         String arraySize = ctx.INT().getText();
+        int sizei = Integer.parseInt(arraySize);
+        if(arrayType.getComponentType() instanceof RecordType){
+            if (!clinitDefined) {
+                clinit = cg.beginMethod(ACC_STATIC, "void", "<clinit>");
+                clinitDefined = true;
+            }
+            for(int i = 0; i < sizei; i++){
+                il.addInstruction("new", javaTypeName);
+                il.addInstruction("dup");
+                il.addInstruction("invokespecial", javaTypeName + ".<init>", "void");
+                il.addInstruction("arrayStore", javaTypeName);
+                
+            }
+        }
         Scope.Kind kind = id.getScope().getKind();
         switch (kind) {
             case GLOBAL:
@@ -544,14 +558,23 @@ public class CompileVisitor extends MicroBaseVisitor<InstructionList> {
         // Place the record object reference onto the stack
         il.append(visit(recordContext));
         // Determine the record class name
-        RecordType recordType = (RecordType) typeMap.get(recordContext);
-        String recordClassName = recordType.getJavaTypeName();
-        // Get the field name
-        String fieldName = ctx.ID().getText();
-        // Get the field type
-        Type exprType = typeMap.get(ctx);
-        // Generate getfield instruction
-        il.addInstruction("getfield", recordClassName + "." + fieldName, exprType.getJavaTypeName());
+        if(typeMap.get(recordContext) instanceof RecordType){
+            RecordType recordType = (RecordType) typeMap.get(recordContext);
+            String recordClassName = recordType.getJavaTypeName();
+            // Get the field name
+            String fieldName = ctx.ID().getText();
+            // Get the field type
+            Type exprType = typeMap.get(ctx);
+            // Generate getfield instruction
+            il.addInstruction("getfield", recordClassName + "." + fieldName, exprType.getJavaTypeName());
+        } else if(typeMap.get(recordContext) instanceof ArrayType && ctx.ID().getText().equals("length")){
+            ArrayType arrayType = (ArrayType) typeMap.get(recordContext);
+            //String recordClassName = arrayType.getJavaTypeName();
+            il.addInstruction("arrayLength");
+        } else {
+            MicroCompilerV1.error(ctx, "record access not instance of record or array");
+        }
+
         return il;
     }
 

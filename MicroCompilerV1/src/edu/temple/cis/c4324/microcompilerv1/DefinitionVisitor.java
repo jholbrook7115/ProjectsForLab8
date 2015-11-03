@@ -6,6 +6,7 @@ import edu.temple.cis.c4324.micro.MicroParser.PrimitiveTypeContext;
 import edu.temple.cis.c4324.micro.MicroParser.ProgramContext;
 import edu.temple.cis.c4324.micro.MicroParser.RecordDeclarationContext;
 import edu.temple.cis.c4324.micro.MicroParser.RecordTypeContext;
+import edu.temple.cis.c4324.micro.MicroParser.RecordParamDeclContext;
 import static edu.temple.cis.c4324.microcompilerv1.MicroCompilerV1.error;
 import java.util.ArrayList;
 import java.util.List;
@@ -58,10 +59,10 @@ public class DefinitionVisitor extends MicroBaseVisitor<Type> {
             String parameterName;
             if (pd instanceof MicroParser.SimpleParamDeclContext) {
                 parameterName = ((MicroParser.SimpleParamDeclContext) pd).ID().getText();
-            } else if (pd instanceof MicroParser.RecordParamDeclContext){
-                parameterName = ((MicroParser.RecordParamDeclContext) pd).ID().getText();
-            }else {
+            } else if (pd instanceof MicroParser.ArrayParamDeclContext){
                 parameterName = ((MicroParser.ArrayParamDeclContext) pd).ID().getText();
+            } else{
+                parameterName = ((MicroParser.RecordParamDeclContext) pd).ID().getText();
             }
             parameterNameList.add(parameterName);
             Identifier parameterId = currentScope.resolve(parameterName);
@@ -95,10 +96,10 @@ public class DefinitionVisitor extends MicroBaseVisitor<Type> {
             String parameterName;
             if (pd instanceof MicroParser.SimpleParamDeclContext) {
                 parameterName = ((MicroParser.SimpleParamDeclContext) pd).ID().getText();
-            } else if (pd instanceof MicroParser.RecordParamDeclContext){
-                parameterName = ((MicroParser.RecordParamDeclContext) pd).ID().getText();
-            } else {
+            } else if (pd instanceof MicroParser.ArrayParamDeclContext){
                 parameterName = ((MicroParser.ArrayParamDeclContext) pd).ID().getText();
+            } else {
+                parameterName = ((MicroParser.RecordParamDeclContext) pd).ID().getText();
             }
             parameterNameList.add(parameterName);
             Identifier parameterId = currentScope.resolve(parameterName);
@@ -157,6 +158,8 @@ public class DefinitionVisitor extends MicroBaseVisitor<Type> {
         return null;
     }
     
+    
+    
     @Override
     public Type visitRecordType(RecordTypeContext ctx) {
         String recordTypeName = ctx.ID().getText();
@@ -213,7 +216,16 @@ public class DefinitionVisitor extends MicroBaseVisitor<Type> {
         }
         return type;
     }
-
+    @Override
+    public Type visitRecordParamDecl(MicroParser.RecordParamDeclContext ctx){
+        String idName = ctx.ID().getText();
+        String recordParentName = ctx.ID().getParent().getText();
+        RecordType recordType = new RecordType(idName, recordParentName);
+        if (!currentScope.define(idName, recordType)) {
+            MicroCompilerV1.error(ctx, idName + " is already defined");
+        }
+        return recordType;
+    }
     /**
      * {@inheritDoc}
      *
@@ -227,21 +239,11 @@ public class DefinitionVisitor extends MicroBaseVisitor<Type> {
     public Type visitArrayParamDecl(MicroParser.ArrayParamDeclContext ctx) {
         String idName = ctx.ID().getText();
         PrimitiveType componentType = (PrimitiveType) visit(ctx.type());
-        
         ArrayType arrayType = new ArrayType(componentType, 0);
         if (!currentScope.define(idName, arrayType)) {
             MicroCompilerV1.error(ctx, idName + " is already defined");
         }
         return arrayType;
     }
-    @Override
-    public Type visitRecordParamDecl(MicroParser.RecordParamDeclContext ctx){
-        String idName = ctx.ID().getText();
-        Type type = visit(ctx.recordType());
-        if(!currentScope.define(idName, type)){
-            MicroCompilerV1.error(ctx, idName + " is already defined");
-        }
-        return type;
-    }
-    
+
 }
